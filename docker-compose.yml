@@ -1,0 +1,13 @@
+version: '2'
+services:
+    webserver:
+        user: root
+        container_name: blacklist-webserver
+        command: bash -c "(cd /var/www/blacklist/ && chmod u+x ./setup.sh && ./setup.sh)"
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile
+        volumes:
+            - .:/var/www/blacklist
+        ports:
+            - "80:80"
